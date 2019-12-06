@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <title>Wedding</title>
+  </head>
+  <body>
+    <form id="test-form" action="index.html" method="post">
+      Full Name
+      <input type="text" name="full_name" /><br />
+      Will you be there?
+      <input type="radio" name="rsvp" value="yes" /> Yes
+      <input type="radio" name="rsvp" value="no" /> No <br />
+      Are you bringing a guest?
+      <input type="radio" name="guest" value="yes" /> Yes
+      <input type="radio" name="guest" value="no" /> No<br />
+      Full name of guest
+      <input type="text" name="guest_full_name" /><br />
+      <input id="submit-form" type="submit" value="Submit" /><br />
+    </form>
+
+    <script type="text/javascript">
+      const scriptURL =
+        "https://script.google.com/macros/s/AKfycbyhdxKSOhbws0LkdLEB_eCzCcpka5QKRFvihkF93NVpQdPLKNcE/exec";
+      const form = document.forms["test-form"];
+
+      form.addEventListener("submit", e => {
+        e.preventDefault();
+        fetch(scriptURL, { method: "POST", body: new FormData(form) })
+          .then(response => console.log("Success!", response))
+          .catch(error => console.error("Error!", error.message));
+      });
+    </script>
+  </body>
+</html>
