@@ -1,35 +1,32 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Wedding</title>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
   </head>
   <body>
-    <form id="test-form" action="index.html" method="post">
-      Full Name
-      <input type="text" name="full_name" /><br />
-      Will you be there?
-      <input type="radio" name="rsvp" value="yes" /> Yes
-      <input type="radio" name="rsvp" value="no" /> No <br />
-      Are you bringing a guest?
-      <input type="radio" name="guest" value="yes" /> Yes
-      <input type="radio" name="guest" value="no" /> No<br />
-      Full name of guest
-      <input type="text" name="guest_full_name" /><br />
-      <input id="submit-form" type="submit" value="Submit" /><br />
+    <!-- Contact Form - sent to a Google Sheet -->
+    <form id="test-form">
+      <p>
+        <label>Name</label>
+        <input id="full_name" name="full_name" type="text" />
+      </p>
+      <p>
+        <label>RSVP</label>
+        <input id="rsvp" name="rsvp" type="radio" value="Yes" />Yes
+        <input id="rsvp" name="rsvp" type="radio" value="No" />No
+      </p>
+      <p>
+        <label>Message</label>
+        <textarea id="message" name="message" rows="5"></textarea>
+      </p>
+      <div id="success"></div>
+      <button type="submit">Send</button>
     </form>
 
-    <script type="text/javascript">
-      const scriptURL =
-        "https://script.google.com/macros/s/AKfycbyhdxKSOhbws0LkdLEB_eCzCcpka5QKRFvihkF93NVpQdPLKNcE/exec";
-      const form = document.forms["test-form"];
-
-      form.addEventListener("submit", e => {
-        e.preventDefault();
-        fetch(scriptURL, { method: "POST", body: new FormData(form) })
-          .then(response => console.log("Success!", response))
-          .catch(error => console.error("Error!", error.message));
-      });
-    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <!-- Custom Theme JavaScript -->
+    <script src="google-sheet.js"></script>
   </body>
 </html>
